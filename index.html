@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sonali bank</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    
+</head>
+
+<body>
+    <div id="login area">
+        <h1 class="bankit">Wellcone To Sonali Bank</h1>
+        <div class="submit">
+            <h4 style="color:blue">Login</h4>
+            <input  type="email
+            " placeholder="Email"class="form-control"id="mail" :required>
+            <br>
+            <input  type="password" name="password" placeholder="password" class="form-control"id="password">
+            <br>
+            <button id ="pin" class="btn btn-success">Enter
+            </button>
+            </div>
+             </div>
+             <div id="transaction">
+                 <div class="row">
+                     <div class="col-md-4">
+                         <div class="diposit status">
+                        <h5>Diposit</h5>
+                         <h2  >TK<span
+                         id="currentDiposit"> 00</span></h2>
+                         </div>
+                     </div>
+                     <div class="col-md-4">
+                         <div class="withdraw status">
+                         <h5>Withdraw</h5>
+                         <h2>TK<span id="currentwithdraw">00</span></h2>
+                         </div>
+                     </div>
+                     <div class="col-md-4">
+                         <div class="balance status">
+                         <h5>Balance</h5>
+                         <h2>TK<span id="currentBalance">00</span></h2>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-6">
+                         <div class="submit" >
+                             <h4>Diposit</h4>
+                         <input  id="dipositAmount" type="text" placeholder="Diposit your TK." class="form-control"><br><button class="btn btn-success"id="addDiposit">Diposit</button>
+                         </div></div>
+                     <div class="col-md-6">
+                         <div class="submit">
+                             <h4>withdraw</h4>
+                         <input id="amountWithdraw" type="text"placeholder="withdraw your TK." class="form-control"><br><button id="addWithdraw" class="btn btn-success">withdraw</button>
+                         </div></div>
+                 </div>
+             </div>
+                         
+             <script>
+                 //login button hendlera
+                 const buttonLog = document.getElementById("pin");buttonLog.addEventListener("click",function(){
+                     const loginAriea = document.getElementById("login area");loginAriea.style.display = "none";
+                     const transactionArea = document.getElementById("transaction");transactionArea.style.display = "block";
+                 
+                 })
+                 //diposit button even handeler.
+                   const dipositButton = document.getElementById("addDiposit");dipositButton.addEventListener("click",function(){
+                  const dipositNumber = getinputNumber("dipositAmount")
+                    //const currentDiposit = document.getElementById("currentDiposit").innerText;
+                    //const currentDipositNumber=parseFloat(currentDiposit);
+                   // const totalDiposit = currentDipositNumber+dipositNumber;
+                   // document.getElementById("currentDiposit").innerText=totalDiposit;
+                    updateSpanTex("currentDiposit",dipositNumber);
+                    updateSpanTex("currentBalance",dipositNumber);
+                    document.getElementById("dipositAmount").value="";
+                    })
+                    //withdraw button evenhandeleer.
+                     const addWithdraw = document.getElementById("addWithdraw");addWithdraw.addEventListener("click",function(){
+                        const withdrawNumber =getinputNumber                                     ("amountWithdraw");
+                        
+                        updateSpanTex("currentwithdraw",withdrawNumber);
+                        updateSpanTex("currentBalance",-1*withdrawNumber)
+
+                        document.getElementById("amountWithdraw").value="";
+                     })
+                     function getinputNumber(id){
+                      const amount = document.getElementById(id).value;
+                         const amountNumber= parseFloat(amount);
+                         return amountNumber;
+
+                     }
+
+                   function updateSpanTex(id,dipositNumber){
+                        const currentBalance =document.getElementById(id).innerText;
+                        const currentBalanceNumber =parseFloat(currentBalance);
+                        const totalBalance = currentBalanceNumber+dipositNumber;
+                        document.getElementById(id).innerText=totalBalance;
+                   };
+
+             </script>
+             </body>
+             </html>
